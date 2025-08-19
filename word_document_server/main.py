@@ -87,7 +87,7 @@ def register_tools():
     # Document tools (create, copy, info, etc.)
     @mcp.tool()
     def create_document(filename: str, title: str = None, author: str = None):
-        """Create a new Word document with optional metadata."""
+        """Create a new empty Word document with optional metadata."""
         return document_tools.create_document(filename, title, author)
     
     @mcp.tool()
