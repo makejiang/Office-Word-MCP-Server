@@ -145,7 +145,6 @@ def register_tools():
         """Add an image to a Word document."""
         return content_tools.add_picture(filename, image_path, width)
     
-    @mcp.tool()
     def add_table(filename: str, rows: int, cols: int, data: list = None):
         """Add a table to a Word document."""
         return content_tools.add_table(filename, rows, cols, data)
