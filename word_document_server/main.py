@@ -131,7 +131,10 @@ def register_tools():
     # Content tools (paragraphs, headings, tables, etc.)
     @mcp.tool()
     def add_paragraph(filename: str, text: str, style: str = None):
-        """Add a paragraph to a Word document."""
+        """
+        Add a paragraph to a Word document.
+        添加一个段落内容到一个word文件。
+        """
         return content_tools.add_paragraph(filename, text, style)
     
     @mcp.tool()
