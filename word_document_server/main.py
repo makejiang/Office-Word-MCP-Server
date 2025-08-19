@@ -98,7 +98,6 @@ def register_tools():
         """Get information about a Word document."""
         return document_tools.get_document_info(filename)
     
-    @mcp.tool()
     def get_document_text(filename: str):
         """Extract all text from a Word document."""
         return document_tools.get_document_text(filename)
@@ -140,7 +139,6 @@ def register_tools():
         """Add a heading to a Word document."""
         return content_tools.add_heading(filename, text, level)
     
-    @mcp.tool()
     def add_picture(filename: str, image_path: str, width: float = None):
         """Add an image to a Word document."""
         return content_tools.add_picture(filename, image_path, width)
