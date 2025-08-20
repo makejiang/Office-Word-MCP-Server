@@ -91,7 +91,7 @@ async def add_paragraph(filename: str, text: str, style: Optional[str] = None) -
     is_writeable, error_message = check_file_writeable(filename)
     if not is_writeable:
         # Suggest creating a copy
-        return f"不能修改文档: {error_message}. 请考虑先复制一份文档或者创建一个新文档."
+        return f"Cannot modify document: {error_message}. Consider creating a copy first or creating a new document. 不能修改文档: {error_message}. 请考虑先复制一份文档或者创建一个新文档."
     
     try:
         doc = Document(filename)
@@ -104,12 +104,12 @@ async def add_paragraph(filename: str, text: str, style: Optional[str] = None) -
                 # Style doesn't exist, use normal and report it
                 paragraph.style = doc.styles['Normal']
                 doc.save(filename)
-                return f"Style '{style}' 不支持, 使用缺省的style添加段落到 {filename}"
+                return f"Style '{style}' not found, paragraph added with default style to {filename}. Style '{style}' 不支持, 使用缺省的style添加段落到 {filename}"
         
         doc.save(filename)
-        return f"段落已经被添加到 {filename}"
+        return f"Paragraph added to {filename}. 段落已经被添加到 {filename}"
     except Exception as e:
-        return f"添加段落失败: {str(e)}"
+        return f"Failed to add paragraph, 添加段落失败: {str(e)}"
 
 
 async def add_table(filename: str, rows: int, cols: int, data: Optional[List[List[str]]] = None) -> str:

@@ -42,9 +42,9 @@ async def create_document(filename: str, title: Optional[str] = None, author: Op
         # Save the document
         doc.save(filename)
         
-        return f"{filename} 创建成功"
+        return f"Document '{filename}' created successfully, '{filename}' 创建成功"
     except Exception as e:
-        return f"创建文档失败: {str(e)}"
+        return f"Failed to create document, 创建文档失败: {str(e)}"
 
 
 async def get_document_info(filename: str) -> str:

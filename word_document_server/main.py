@@ -87,293 +87,502 @@ def register_tools():
     # Document tools (create, copy, info, etc.)
     @mcp.tool()
     def create_document(filename: str, title: str = None, author: str = None):
-        """创建一个新的空Word文档，带有可选的title和author信息。"""
+        """
+        Create a new Word document with optional metadata.
+        创建一个新的空Word文档，带有可选的元数据信息, 如title和author。
+        """
         return document_tools.create_document(filename, title, author)
     
+    @mcp.tool()
     def copy_document(source_filename: str, destination_filename: str = None):
-        """Create a copy of a Word document."""
+        """
+        Create a copy of a Word document.
+        复制一个Word文档到指定的目标文件名。
+        """
         return document_tools.copy_document(source_filename, destination_filename)
     
+    @mcp.tool()
     def get_document_info(filename: str):
-        """Get information about a Word document."""
+        """
+        Get information about a Word document.
+        获取Word文档的元数据信息，如标题、作者、创建日期等。
+        """
         return document_tools.get_document_info(filename)
     
+    @mcp.tool()
     def get_document_text(filename: str):
-        """Extract all text from a Word document."""
+        """
+        Extract all text from a Word document.
+        从Word文档中提取所有文本内容。
+        """
         return document_tools.get_document_text(filename)
     
+    @mcp.tool()
     def get_document_outline(filename: str):
-        """Get the structure of a Word document."""
+        """
+        Get the structure of a Word document.
+        获取Word文档的结构大纲，包括标题和段落。
+        """
         return document_tools.get_document_outline(filename)
     
+    @mcp.tool()
     def list_available_documents(directory: str = "."):
-        """List all .docx files in the specified directory."""
+        """
+        List all .docx files in the specified directory.
+        列出指定目录中的所有可用Word文档（.docx文件）。
+        """
         return document_tools.list_available_documents(directory)
     
+    @mcp.tool()
     def get_document_xml(filename: str):
-        """Get the raw XML structure of a Word document."""
+        """
+        Get the raw XML structure of a Word document.
+        获取Word文档的原始XML结构。
+        """
         return document_tools.get_document_xml_tool(filename)
     
+    @mcp.tool()
     def insert_header_near_text(filename: str, target_text: str = None, header_title: str = None, position: str = 'after', header_style: str = 'Heading 1', target_paragraph_index: int = None):
-        """Insert a header (with specified style) before or after the target paragraph. Specify by text or paragraph index. Args: filename (str), target_text (str, optional), header_title (str), position ('before' or 'after'), header_style (str, default 'Heading 1'), target_paragraph_index (int, optional)."""
+        """
+        Insert a header (with specified style) before or after the target paragraph. Specify by text or paragraph index. Args: filename (str), target_text (str, optional), header_title (str), position ('before' or 'after'), header_style (str, default 'Heading 1'), target_paragraph_index (int, optional).
+        在目标段落之前或之后插入一个标题（带有指定样式）。通过文本或段落索引进行指定。参数：文件名（str），目标文本（str，可选），标题名称（str），位置（'before' 或 'after'），标题样式（str，默认为 'Heading 1'），目标段落索引（int，可选）。
+        """
         return content_tools.insert_header_near_text_tool(filename, target_text, header_title, position, header_style, target_paragraph_index)
     
+    @mcp.tool()
     def insert_line_or_paragraph_near_text(filename: str, target_text: str = None, line_text: str = None, position: str = 'after', line_style: str = None, target_paragraph_index: int = None):
         """
         Insert a new line or paragraph (with specified or matched style) before or after the target paragraph. Specify by text or paragraph index. Args: filename (str), target_text (str, optional), line_text (str), position ('before' or 'after'), line_style (str, optional), target_paragraph_index (int, optional).
+        在目标段落之前或之后插入一个新行或段落（带有指定或匹配的样式）。通过文本或段落索引进行指定。参数：文件名（str），目标文本（str，可选），行文本（str），位置（'before' 或 'after'），行样式（str，可选），目标段落索引（int，可选）。
         """
         return content_tools.insert_line_or_paragraph_near_text_tool(filename, target_text, line_text, position, line_style, target_paragraph_index)
     
+    @mcp.tool()
     def insert_numbered_list_near_text(filename: str, target_text: str = None, list_items: list = None, position: str = 'after', target_paragraph_index: int = None):
-        """Insert a numbered list before or after the target paragraph. Specify by text or paragraph index. Args: filename (str), target_text (str, optional), list_items (list of str), position ('before' or 'after'), target_paragraph_index (int, optional)."""
+        """
+        Insert a numbered list before or after the target paragraph. Specify by text or paragraph index. Args: filename (str), target_text (str, optional), list_items (list of str), position ('before' or 'after'), target_paragraph_index (int, optional).
+        在目标段落之前或之后插入一个编号列表。通过文本或段落索引进行指定。参数：文件名（str），目标文本（str，可选），列表项（字符串列表），位置（'before' 或 'after'），目标段落索引（int，可选）。"""
         return content_tools.insert_numbered_list_near_text_tool(filename, target_text, list_items, position, target_paragraph_index)
-    
     # Content tools (paragraphs, headings, tables, etc.)
     @mcp.tool()
     def add_paragraph(filename: str, text: str, style: str = None):
         """
-            为word文档添加文本段落(paragraph)。
-            style参数可以设置None或者一个字符串。
+        Add a paragraph to a Word document.
+        在Word文档中添加一个文本段落。
         """
         return content_tools.add_paragraph(filename, text, style)
     
+    @mcp.tool()
     def add_heading(filename: str, text: str, level: int = 1):
-        """Add a heading to a Word document."""
+        """
+        Add a heading to a Word document.
+        在Word文档中添加一个标题。
+        """
         return content_tools.add_heading(filename, text, level)
     
+    @mcp.tool()
     def add_picture(filename: str, image_path: str, width: float = None):
-        """Add an image to a Word document."""
+        """
+        Add an image to a Word document.
+        在Word文档中添加一张图片。
+        """
         return content_tools.add_picture(filename, image_path, width)
     
+    @mcp.tool()
     def add_table(filename: str, rows: int, cols: int, data: list = None):
-        """Add a table to a Word document."""
+        """
+        Add a table to a Word document.
+        在Word文档中添加一个表格。
+        """
         return content_tools.add_table(filename, rows, cols, data)
     
+    @mcp.tool()
     def add_page_break(filename: str):
-        """Add a page break to the document."""
+        """
+        Add a page break to the document.
+        在Word文档中添加一个分页符。
+        """
         return content_tools.add_page_break(filename)
     
+    @mcp.tool()
     def delete_paragraph(filename: str, paragraph_index: int):
-        """Delete a paragraph from a document."""
+        """
+        Delete a paragraph from a document.
+        从Word文档中删除一个段落。
+        """
         return content_tools.delete_paragraph(filename, paragraph_index)
     
+    @mcp.tool()
     def search_and_replace(filename: str, find_text: str, replace_text: str):
-        """Search for text and replace all occurrences."""
+        """
+        Search for text and replace all occurrences.
+        在Word文档中搜索文本并替换所有匹配项。
+        """
         return content_tools.search_and_replace(filename, find_text, replace_text)
     
     # Format tools (styling, text formatting, etc.)
+    @mcp.tool()
     def create_custom_style(filename: str, style_name: str, bold: bool = None, 
                           italic: bool = None, font_size: int = None, 
                           font_name: str = None, color: str = None, 
                           base_style: str = None):
-        """Create a custom style in the document."""
+        """
+        Create a custom style in the document.
+        在Word文档中创建一个自定义样式。
+        """
         return format_tools.create_custom_style(
             filename, style_name, bold, italic, font_size, font_name, color, base_style
         )
     
+    @mcp.tool()
     def format_text(filename: str, paragraph_index: int, start_pos: int, end_pos: int,
                    bold: bool = None, italic: bool = None, underline: bool = None,
                    color: str = None, font_size: int = None, font_name: str = None):
-        """Format a specific range of text within a paragraph."""
+        """
+        Format a specific range of text within a paragraph.
+        在段落中格式化特定范围的文本。
+        """
         return format_tools.format_text(
             filename, paragraph_index, start_pos, end_pos, bold, italic, 
             underline, color, font_size, font_name
         )
     
+    @mcp.tool()
     def format_table(filename: str, table_index: int, has_header_row: bool = None,
                     border_style: str = None, shading: list = None):
-        """Format a table with borders, shading, and structure."""
+        """
+        Format a table with borders, shading, and structure.
+        在Word文档中格式化表格，包括边框、填充和结构。
+        """
         return format_tools.format_table(filename, table_index, has_header_row, border_style, shading)
     
     # New table cell shading tools
+    @mcp.tool()
     def set_table_cell_shading(filename: str, table_index: int, row_index: int, 
                               col_index: int, fill_color: str, pattern: str = "clear"):
-        """Apply shading/filling to a specific table cell."""
+        """
+        Apply shading/filling to a specific table cell.
+        在Word文档的特定表格单元格中应用填充颜色。
+        """
         return format_tools.set_table_cell_shading(filename, table_index, row_index, col_index, fill_color, pattern)
     
+    @mcp.tool()
     def apply_table_alternating_rows(filename: str, table_index: int, 
                                    color1: str = "FFFFFF", color2: str = "F2F2F2"):
-        """Apply alternating row colors to a table for better readability."""
+        """
+        Apply alternating row colors to a table for better readability.
+        在Word文档的表格中应用交替行颜色以提高可读性。
+        """
         return format_tools.apply_table_alternating_rows(filename, table_index, color1, color2)
     
+    @mcp.tool()
     def highlight_table_header(filename: str, table_index: int, 
                              header_color: str = "4472C4", text_color: str = "FFFFFF"):
-        """Apply special highlighting to table header row."""
+        """
+        Apply special highlighting to table header row.
+        在Word文档的表格标题行中应用特殊高亮显示。
+        """
         return format_tools.highlight_table_header(filename, table_index, header_color, text_color)
     
     # Cell merging tools
+    @mcp.tool()
     def merge_table_cells(filename: str, table_index: int, start_row: int, start_col: int, 
                         end_row: int, end_col: int):
-        """Merge cells in a rectangular area of a table."""
+        """
+        Merge cells in a rectangular area of a table.
+        在Word文档的表格中合并一个矩形区域的单元格。
+        """
         return format_tools.merge_table_cells(filename, table_index, start_row, start_col, end_row, end_col)
     
+    @mcp.tool()
     def merge_table_cells_horizontal(filename: str, table_index: int, row_index: int, 
                                    start_col: int, end_col: int):
-        """Merge cells horizontally in a single row."""
+        """
+        Merge cells horizontally in a single row.
+        在Word文档的表格中在单行内水平合并单元格。
+        """
         return format_tools.merge_table_cells_horizontal(filename, table_index, row_index, start_col, end_col)
     
+    @mcp.tool()
     def merge_table_cells_vertical(filename: str, table_index: int, col_index: int, 
                                  start_row: int, end_row: int):
-        """Merge cells vertically in a single column."""
+        """
+        Merge cells vertically in a single column.
+        在Word文档的表格中在单列内垂直合并单元格。
+        """
         return format_tools.merge_table_cells_vertical(filename, table_index, col_index, start_row, end_row)
     
     # Cell alignment tools
+    @mcp.tool()
     def set_table_cell_alignment(filename: str, table_index: int, row_index: int, col_index: int,
                                horizontal: str = "left", vertical: str = "top"):
-        """Set text alignment for a specific table cell."""
+        """
+        Set text alignment for a specific table cell.
+        在Word文档的特定表格单元格中设置文本对齐方式。
+        """
         return format_tools.set_table_cell_alignment(filename, table_index, row_index, col_index, horizontal, vertical)
     
+    @mcp.tool()
     def set_table_alignment_all(filename: str, table_index: int, 
                               horizontal: str = "left", vertical: str = "top"):
-        """Set text alignment for all cells in a table."""
+        """
+        Set text alignment for all cells in a table.
+        在Word文档的整个表格中设置文本对齐方式。
+        """
         return format_tools.set_table_alignment_all(filename, table_index, horizontal, vertical)
     
     # Protection tools
+    @mcp.tool()
     def protect_document(filename: str, password: str):
-        """Add password protection to a Word document."""
+        """
+        Add password protection to a Word document.
+        为Word文档添加密码保护。
+        """
         return protection_tools.protect_document(filename, password)
     
+    @mcp.tool()
     def unprotect_document(filename: str, password: str):
-        """Remove password protection from a Word document."""
+        """
+        Remove password protection from a Word document.
+        从Word文档中移除密码保护。
+        """
         return protection_tools.unprotect_document(filename, password)
     
     # Footnote tools
+    @mcp.tool()
     def add_footnote_to_document(filename: str, paragraph_index: int, footnote_text: str):
-        """Add a footnote to a specific paragraph in a Word document."""
+        """
+        Add a footnote to a specific paragraph in a Word document.
+        在Word文档的特定段落中添加脚注。
+        """
         return footnote_tools.add_footnote_to_document(filename, paragraph_index, footnote_text)
     
+    @mcp.tool()
     def add_footnote_after_text(filename: str, search_text: str, footnote_text: str, 
                                output_filename: str = None):
-        """Add a footnote after specific text with proper superscript formatting.
-        This enhanced function ensures footnotes display correctly as superscript."""
+        """
+        Add a footnote after specific text with proper superscript formatting.
+        This enhanced function ensures footnotes display correctly as superscript.
+        在特定文本后添加脚注，并确保脚注以正确的上标格式显示。
+        """
         return footnote_tools.add_footnote_after_text(filename, search_text, footnote_text, output_filename)
     
+    @mcp.tool()
     def add_footnote_before_text(filename: str, search_text: str, footnote_text: str, 
                                 output_filename: str = None):
-        """Add a footnote before specific text with proper superscript formatting.
-        This enhanced function ensures footnotes display correctly as superscript."""
+        """
+        Add a footnote before specific text with proper superscript formatting.
+        This enhanced function ensures footnotes display correctly as superscript.
+        在特定文本前添加脚注，并确保脚注以正确的上标格式显示。
+        """
         return footnote_tools.add_footnote_before_text(filename, search_text, footnote_text, output_filename)
     
+    @mcp.tool()
     def add_footnote_enhanced(filename: str, paragraph_index: int, footnote_text: str,
                              output_filename: str = None):
-        """Enhanced footnote addition with guaranteed superscript formatting.
-        Adds footnote at the end of a specific paragraph with proper style handling."""
+        """
+        Enhanced footnote addition with guaranteed superscript formatting.
+        Adds footnote at the end of a specific paragraph with proper style handling.
+        增强的脚注添加，确保上标格式。  
+        在特定段落末尾添加脚注，并进行适当的样式处理。
+        """
         return footnote_tools.add_footnote_enhanced(filename, paragraph_index, footnote_text, output_filename)
     
+    @mcp.tool()
     def add_endnote_to_document(filename: str, paragraph_index: int, endnote_text: str):
-        """Add an endnote to a specific paragraph in a Word document."""
+        """
+        Add an endnote to a specific paragraph in a Word document.
+        在Word文档的特定段落中添加尾注。
+        """
         return footnote_tools.add_endnote_to_document(filename, paragraph_index, endnote_text)
     
+    @mcp.tool()
     def customize_footnote_style(filename: str, numbering_format: str = "1, 2, 3",
                                 start_number: int = 1, font_name: str = None,
                                 font_size: int = None):
-        """Customize footnote numbering and formatting in a Word document."""
+        """
+        Customize footnote numbering and formatting in a Word document.
+        在Word文档中自定义脚注编号和格式。
+        """
         return footnote_tools.customize_footnote_style(
             filename, numbering_format, start_number, font_name, font_size
         )
     
+    @mcp.tool()
     def delete_footnote_from_document(filename: str, footnote_id: int = None,
                                      search_text: str = None, output_filename: str = None):
-        """Delete a footnote from a Word document.
-        Identify the footnote either by ID (1, 2, 3, etc.) or by searching for text near it."""
+        """
+        Delete a footnote from a Word document.
+        Identify the footnote either by ID (1, 2, 3, etc.) or by searching for text near it.
+        从Word文档中删除脚注。通过ID（1, 2, 3等）或搜索附近的文本来识别脚注。
+        """
         return footnote_tools.delete_footnote_from_document(
             filename, footnote_id, search_text, output_filename
         )
     
     # Robust footnote tools - Production-ready with comprehensive validation
+    @mcp.tool()
     def add_footnote_robust(filename: str, search_text: str = None, 
                            paragraph_index: int = None, footnote_text: str = "",
                            validate_location: bool = True, auto_repair: bool = False):
-        """Add footnote with robust validation and Word compliance.
-        This is the production-ready version with comprehensive error handling."""
+        """
+        Add footnote with robust validation and Word compliance.
+        This is the production-ready version with comprehensive error handling.
+        添加脚注，具有强大的验证和Word合规性。
+        这是具有错误处理的生产版本。
+        """
         return footnote_tools.add_footnote_robust_tool(
             filename, search_text, paragraph_index, footnote_text, 
             validate_location, auto_repair
         )
     
+    @mcp.tool()
     def validate_document_footnotes(filename: str):
-        """Validate all footnotes in document for coherence and compliance.
-        Returns detailed report on ID conflicts, orphaned content, missing styles, etc."""
+        """
+        Validate all footnotes in document for coherence and compliance.
+        Returns detailed report on ID conflicts, orphaned content, missing styles, etc.
+        验证文档中的所有脚注，以确保一致性和合规性。
+        """
         return footnote_tools.validate_footnotes_tool(filename)
     
+    @mcp.tool()
     def delete_footnote_robust(filename: str, footnote_id: int = None,
                               search_text: str = None, clean_orphans: bool = True):
-        """Delete footnote with comprehensive cleanup and orphan removal.
-        Ensures complete removal from document.xml, footnotes.xml, and relationships."""
+        """
+        Delete footnote with comprehensive cleanup and orphan removal.
+        Ensures complete removal from document.xml, footnotes.xml, and relationships.
+        删除脚注，进行全面清理和孤立内容删除。
+        确保从document.xml、footnotes.xml和关系中完全删除。
+        """
         return footnote_tools.delete_footnote_robust_tool(
             filename, footnote_id, search_text, clean_orphans
         )
     
     # Extended document tools
+    @mcp.tool()
     def get_paragraph_text_from_document(filename: str, paragraph_index: int):
-        """Get text from a specific paragraph in a Word document."""
+        """
+        Get text from a specific paragraph in a Word document.
+        获取Word文档中特定段落的文本内容。
+        """
         return extended_document_tools.get_paragraph_text_from_document(filename, paragraph_index)
     
+    @mcp.tool()
     def find_text_in_document(filename: str, text_to_find: str, match_case: bool = True,
                              whole_word: bool = False):
-        """Find occurrences of specific text in a Word document."""
+        """
+        Find occurrences of specific text in a Word document.
+        在Word文档中查找特定文本的出现位置。
+        """
         return extended_document_tools.find_text_in_document(
             filename, text_to_find, match_case, whole_word
         )
     
+    @mcp.tool()
     def convert_to_pdf(filename: str, output_filename: str = None):
-        """Convert a Word document to PDF format."""
+        """
+        Convert a Word document to PDF format.
+        把一个Word文档转换为PDF格式。
+        """
         return extended_document_tools.convert_to_pdf(filename, output_filename)
 
+    @mcp.tool()
     def replace_paragraph_block_below_header(filename: str, header_text: str, new_paragraphs: list, detect_block_end_fn=None):
-        """Reemplaza el bloque de párrafos debajo de un encabezado, evitando modificar TOC."""
+        """
+        Replaces the paragraph block below a header, avoiding modifications to the Table of Contents (TOC).
+        替换标题下方的段落块，避免对目录（TOC）的修改。
+        """
         return replace_paragraph_block_below_header_tool(filename, header_text, new_paragraphs, detect_block_end_fn)
 
+    @mcp.tool()
     def replace_block_between_manual_anchors(filename: str, start_anchor_text: str, new_paragraphs: list, end_anchor_text: str = None, match_fn=None, new_paragraph_style: str = None):
-        """Replace all content between start_anchor_text and end_anchor_text (or next logical header if not provided)."""
+        """
+        Replace all content between start_anchor_text and end_anchor_text (or next logical header if not provided).
+        替换start_anchor_text和end_anchor_text之间的所有内容（如果未提供end_anchor_text，则替换到下一个逻辑标题）。
+        """
         return replace_block_between_manual_anchors_tool(filename, start_anchor_text, new_paragraphs, end_anchor_text, match_fn, new_paragraph_style)
 
     # Comment tools
+    @mcp.tool()
     def get_all_comments(filename: str):
-        """Extract all comments from a Word document."""
+        """
+        Extract all comments from a Word document.
+        从Word文档中提取所有评论。
+        """
         return comment_tools.get_all_comments(filename)
     
+    @mcp.tool()
     def get_comments_by_author(filename: str, author: str):
-        """Extract comments from a specific author in a Word document."""
+        """
+        Extract comments from a specific author in a Word document.
+        从Word文档中提取特定作者的评论。
+        """
         return comment_tools.get_comments_by_author(filename, author)
     
+    @mcp.tool()
     def get_comments_for_paragraph(filename: str, paragraph_index: int):
-        """Extract comments for a specific paragraph in a Word document."""
+        """
+        Extract comments for a specific paragraph in a Word document.
+        从Word文档中提取特定段落的评论。
+        """
         return comment_tools.get_comments_for_paragraph(filename, paragraph_index)
-    
     # New table column width tools
+    @mcp.tool()
     def set_table_column_width(filename: str, table_index: int, col_index: int, 
                               width: float, width_type: str = "points"):
-        """Set the width of a specific table column."""
+        """
+        Set the width of a specific table column.
+        在Word文档的特定表格列中设置列宽。
+        """
         return format_tools.set_table_column_width(filename, table_index, col_index, width, width_type)
 
+    @mcp.tool()
     def set_table_column_widths(filename: str, table_index: int, widths: list, 
                                width_type: str = "points"):
-        """Set the widths of multiple table columns."""
+        """
+        Set the widths of multiple table columns.
+        在Word文档的特定表格中设置多个列的宽度。
+        """
         return format_tools.set_table_column_widths(filename, table_index, widths, width_type)
 
+    @mcp.tool()
     def set_table_width(filename: str, table_index: int, width: float, 
                        width_type: str = "points"):
-        """Set the overall width of a table."""
+        """
+        Set the overall width of a table.
+        在Word文档的特定表格中设置表格的整体宽度。
+        """
         return format_tools.set_table_width(filename, table_index, width, width_type)
 
+    @mcp.tool()
     def auto_fit_table_columns(filename: str, table_index: int):
-        """Set table columns to auto-fit based on content."""
+        """
+        Set table columns to auto-fit based on content.
+        在Word文档的特定表格中设置列宽自适应内容。
+        """
         return format_tools.auto_fit_table_columns(filename, table_index)
 
     # New table cell text formatting and padding tools
+    @mcp.tool()
     def format_table_cell_text(filename: str, table_index: int, row_index: int, col_index: int,
                                text_content: str = None, bold: bool = None, italic: bool = None,
                                underline: bool = None, color: str = None, font_size: int = None,
                                font_name: str = None):
-        """Format text within a specific table cell."""
+        """
+        Format text within a specific table cell.
+        在Word文档的特定表格单元格中格式化文本内容。
+        """
         return format_tools.format_table_cell_text(filename, table_index, row_index, col_index,
                                                    text_content, bold, italic, underline, color, font_size, font_name)
 
+    @mcp.tool()
     def set_table_cell_padding(filename: str, table_index: int, row_index: int, col_index: int,
                                top: float = None, bottom: float = None, left: float = None, 
                                right: float = None, unit: str = "points"):
-        """Set padding/margins for a specific table cell."""
+        """
+        Set padding/margins for a specific table cell.
+        在Word文档的特定表格单元格中设置填充/边距。
+        """
         return format_tools.set_table_cell_padding(filename, table_index, row_index, col_index,
                                                    top, bottom, left, right, unit)
 
