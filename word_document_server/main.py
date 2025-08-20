@@ -87,7 +87,7 @@ def register_tools():
     # Document tools (create, copy, info, etc.)
     @mcp.tool()
     def create_document(filename: str, title: str = None, author: str = None):
-        """Create a new empty Word document with optional metadata."""
+        """创建一个新的空Word文档，带有可选的title和author信息。"""
         return document_tools.create_document(filename, title, author)
     
     def copy_document(source_filename: str, destination_filename: str = None):
@@ -131,7 +131,7 @@ def register_tools():
     # Content tools (paragraphs, headings, tables, etc.)
     @mcp.tool()
     def add_paragraph(filename: str, text: str, style: str = None):
-        """Add a paragraph to a Word document."""
+        """为word文档添加文本段落(paragraph)。"""
         return content_tools.add_paragraph(filename, text, style)
     
     def add_heading(filename: str, text: str, level: int = 1):

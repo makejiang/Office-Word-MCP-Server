@@ -85,13 +85,13 @@ async def add_paragraph(filename: str, text: str, style: Optional[str] = None) -
     filename = ensure_docx_extension(filename)
     
     if not os.path.exists(filename):
-        return f"Document {filename} does not exist"
+        return f"{filename} 不存在"
     
     # Check if file is writeable
     is_writeable, error_message = check_file_writeable(filename)
     if not is_writeable:
         # Suggest creating a copy
-        return f"Cannot modify document: {error_message}. Consider creating a copy first or creating a new document."
+        return f"不能修改文档: {error_message}. 请考虑先复制一份文档或者创建一个新文档."
     
     try:
         doc = Document(filename)
@@ -104,12 +104,12 @@ async def add_paragraph(filename: str, text: str, style: Optional[str] = None) -
                 # Style doesn't exist, use normal and report it
                 paragraph.style = doc.styles['Normal']
                 doc.save(filename)
-                return f"Style '{style}' not found, paragraph added with default style to {filename}"
+                return f"Style '{style}' 不支持, 使用缺省的style添加段落到 {filename}"
         
         doc.save(filename)
-        return f"Paragraph added to {filename}"
+        return f"段落已经被添加到 {filename}"
     except Exception as e:
-        return f"Failed to add paragraph: {str(e)}"
+        return f"添加段落失败: {str(e)}"
 
 
 async def add_table(filename: str, rows: int, cols: int, data: Optional[List[List[str]]] = None) -> str:
