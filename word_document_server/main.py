@@ -134,7 +134,6 @@ def register_tools():
         """Add a paragraph to a Word document."""
         return content_tools.add_paragraph(filename, text, style)
     
-    @mcp.tool()
     def add_heading(filename: str, text: str, level: int = 1):
         """Add a heading to a Word document."""
         return content_tools.add_heading(filename, text, level)
