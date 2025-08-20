@@ -131,7 +131,10 @@ def register_tools():
     # Content tools (paragraphs, headings, tables, etc.)
     @mcp.tool()
     def add_paragraph(filename: str, text: str, style: str = None):
-        """为word文档添加文本段落(paragraph)， style参数可选。"""
+        """
+            为word文档添加文本段落(paragraph)。
+            style参数可以设置None或者一个字符串。
+        """
         return content_tools.add_paragraph(filename, text, style)
     
     def add_heading(filename: str, text: str, level: int = 1):
