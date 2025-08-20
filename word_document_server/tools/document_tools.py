@@ -42,7 +42,7 @@ async def create_document(filename: str, title: Optional[str] = None, author: Op
         # Save the document
         doc.save(filename)
         
-        return f"Document {filename} created successfully"
+        return f"{filename} created successfully"
     except Exception as e:
         return f"Failed to create document: {str(e)}"
 
